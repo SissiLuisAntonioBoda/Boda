@@ -224,15 +224,15 @@ async function generarCanvasBoleto(datos) {
 
     const centroX = ancho * 0.82;
 
-    ctx.fillStyle = '#5A116D';
-    ctx.font = '600 24px "Poppins", sans-serif';
+    ctx.fillStyle = '#2C422E';
+    ctx.font = '500 24px "Playfair Display", serif';
     if (datos.boletos === '1') {
         ctx.fillText('Boleto', centroX, alto * 0.615);
-        ctx.font = '600 34px "Poppins", sans-serif';
+        ctx.font = '500 32px "Playfair Display", serif';
         ctx.fillText('individual', centroX, alto * 0.68);
     } else {
         ctx.fillText('Boleto para', centroX, alto * 0.615);
-        ctx.font = '600 34px "Poppins", sans-serif';
+        ctx.font = '500 32px "Playfair Display", serif';
         ctx.fillText(`${datos.boletos} invitados`, centroX, alto * 0.68);
     }
 
