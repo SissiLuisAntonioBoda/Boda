@@ -1,0 +1,1296 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* VARIABLES DE COLORES */
+:root {
+    --verde-oscuro: #2C422E;
+    --vino: #8A2532;
+    --dorado: #B5955C;
+    --crema: #F9F9F7;
+    --texto: #4A4A4A;
+}
+
+body {
+    background-color: var(--crema);
+    background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f1ea 100%);
+    font-family: 'Poppins', sans-serif;
+    color: var(--texto);
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+video,
+canvas {
+    max-width: 100%;
+}
+
+/* ========================================== */
+/* PANTALLA COMPLETA (HERO SECTION)           */
+/* ========================================== */
+.hero-seccion {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    /* AQUÍ ESTÁ LA RUTA DE TU IMAGEN */
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('img/optimized/foto-52.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.nombres-hero {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(4.1rem, 15vw, 6rem); 
+    color: #ffffff;
+    line-height: 0.8;
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.5); 
+}
+
+.ampersand-hero {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.fecha-hero {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 4.2vw, 1.5rem);
+    color: #ffffff;
+    letter-spacing: 4px;
+    margin-top: 20px;
+    text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+}
+
+@media (min-width: 900px) and (hover: hover) {
+    .hero-seccion {
+        background-attachment: fixed;
+    }
+}
+
+/* ========================================== */
+/* SOBRE Y SELLO DE CERA                      */
+/* ========================================== */
+#pantalla-sobre {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999; cursor: pointer; overflow: hidden;
+}
+
+.mitad-superior, .mitad-inferior {
+    position: absolute; left: 0; width: 100%; height: 50vh;
+    background-color: var(--verde-oscuro);
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); 
+    z-index: 1;
+}
+
+.mitad-superior { top: 0; border-bottom: 2px solid var(--dorado); }
+.mitad-inferior { bottom: 0; border-top: 1px solid rgba(255,255,255,0.1); }
+
+.sello-central {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-7deg);
+    width: 108px; height: 108px;
+    background-color: var(--vino);
+    color: var(--dorado);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.65rem;
+    line-height: 1;
+    text-align: center;
+    border: 2px solid var(--dorado);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.5);
+    z-index: 2;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
+
+.sello-central span {
+    display: block;
+    width: 100%;
+    transform: translate(-2px, 2px);
+}
+
+.texto-abrir {
+    position: absolute; top: 60%; left: 50%;
+    transform: translateX(-50%);
+    color: var(--dorado);
+    font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+    z-index: 2; opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+#pantalla-sobre.abierto .mitad-superior { transform: translateY(-100%); }
+#pantalla-sobre.abierto .mitad-inferior { transform: translateY(100%); }
+#pantalla-sobre.abierto .sello-central { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+#pantalla-sobre.abierto .texto-abrir { opacity: 0; }
+#pantalla-sobre.oculto { visibility: hidden; }
+
+/* ========================================== */
+/* MENÚ LATERAL FLOTANTE                      */
+/* ========================================== */
+.menu-flotante {
+    position: fixed; right: 0; top: 50%; transform: translate(110%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px 0 0 10px; z-index: 1000;
+    display: flex; flex-direction: column;
+    box-shadow: -2px 0 15px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.menu-toggle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 54px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--verde-oscuro);
+    box-shadow: -2px 0 12px rgba(0,0,0,0.12);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.invitacion-abierta .menu-toggle {
+    opacity: 0.88;
+    pointer-events: auto;
+}
+
+.menu-visible .menu-flotante {
+    transform: translateY(-50%);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-visible .menu-toggle {
+    transform: translate(-86px, -50%) rotate(180deg);
+}
+
+.menu-flotante a,
+.menu-flotante button {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #333; text-decoration: none; padding: 15px 12px;
+    text-align: center; font-size: 0.65rem; font-weight: bold;
+    text-transform: uppercase; border-bottom: 1px solid #eaeaea; transition: 0.3s;
+}
+.menu-flotante a:last-child,
+.menu-flotante button:last-child { border-bottom: none; }
+.menu-flotante a i,
+.menu-flotante button i { font-size: 1.3rem; display: block; margin-bottom: 3px; color: #4a4a4a; }
+.menu-flotante a:hover,
+.menu-flotante button:hover { background-color: #eaeaea; }
+.menu-flotante button.musica-pausada i { color: var(--vino); }
+
+/* ========================================== */
+/* DISEÑO DE LA TARJETA Y ANIMACIONES SCROLL  */
+/* ========================================== */
+.contenedor-principal {
+    max-width: 550px;
+    padding-top: 30px;
+    padding-left: clamp(14px, 4vw, 24px);
+    padding-right: clamp(14px, 4vw, 24px);
+}
+
+.seccion {
+    background-color: rgba(255, 255, 255, 0.85); 
+    padding: clamp(34px, 8vw, 50px) clamp(18px, 6vw, 30px);
+    margin-bottom: 30px;
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border-top: 4px solid var(--verde-oscuro); 
+}
+
+.seccion-sin-caja {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-top: none !important;
+    border-radius: 0 !important;
+    padding: 60px 0 70px !important;
+    margin-bottom: 20px !important;
+}
+
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.titulo-seccion { font-family: 'Playfair Display', serif; color: var(--verde-oscuro); font-size: 2rem; font-style: italic; }
+.divisor-linea { width: 60px; height: 2px; background-color: var(--dorado); margin: 10px auto; }
+.txt-secundario { color: #666; font-size: 0.95rem; line-height: 1.6; }
+.txt-principal { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+
+.mensaje-confirmacion {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    display: none;
+}
+
+.mensaje-confirmacion.exito {
+    display: block;
+    background-color: rgba(44, 66, 46, 0.08);
+    color: var(--verde-oscuro);
+    border: 1px solid rgba(44, 66, 46, 0.2);
+}
+
+.mensaje-confirmacion.error {
+    display: block;
+    background-color: rgba(138, 37, 50, 0.08);
+    color: var(--vino);
+    border: 1px solid rgba(138, 37, 50, 0.2);
+}
+
+/* ========================================== */
+/* TEXTOS E INICIO                            */
+/* ========================================== */
+.padres-text { font-size: 0.9rem; font-style: italic; font-family: 'Playfair Display', serif; }
+
+.bloque-regalos {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+}
+
+.titulo-regalos {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+
+.icono-regalos-nuevo {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #f7e7c3 0%, #d8b76b 100%);
+    color: var(--verde-oscuro);
+    font-size: 1.5rem;
+    box-shadow: 0 8px 18px rgba(181, 149, 92, 0.2);
+}
+
+.texto-regalos {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #5c5c5c;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ========================================== */
+/* CONTADOR REGRESIVO                         */
+/* ========================================== */
+.bloque-tiempo {
+    background-color: var(--crema); border: 1px solid rgba(181, 149, 92, 0.3);
+    border-radius: 8px; padding: 15px 5px; width: 70px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+.numero-tiempo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--vino); font-weight: bold; display: block; line-height: 1; }
+.etiqueta-tiempo { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--verde-oscuro); margin-top: 5px; display: block; }
+
+/* ========================================== */
+/* ITINERARIO (TIMELINE)                      */
+/* ========================================== */
+.timeline { position: relative; max-width: 300px; margin: 0 auto; padding: 20px 0; }
+.timeline::after { content: ''; position: absolute; width: 2px; background-color: var(--dorado); top: 0; bottom: 0; left: 20px; margin-left: -1px; }
+.timeline-item { position: relative; padding-left: 50px; margin-bottom: 30px; text-align: left; }
+.timeline-icon {
+    position: absolute; left: 4px; top: 0; width: 34px; height: 34px;
+    background-color: var(--crema); border: 2px solid var(--verde-oscuro); border-radius: 50%;
+    z-index: 1; display: flex; justify-content: center; align-items: center; color: var(--vino); font-size: 1.1rem;
+}
+.timeline-time { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: bold; color: var(--verde-oscuro); }
+.timeline-text { font-size: 0.95rem; color: #666; }
+
+/* ========================================== */
+/* BOTONES E INPUTS                           */
+/* ========================================== */
+.btn-boda { background-color: var(--verde-oscuro); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+.btn-boda:hover { background-color: var(--vino); color: white; }
+.input-boda { border: none; border-bottom: 1px solid #ccc; border-radius: 0; background-color: transparent; padding-left: 0; }
+.input-boda:focus { box-shadow: none; border-bottom: 1px solid var(--verde-oscuro); background-color: transparent; }
+.caja-banco { background-color: var(--crema); border: 1px solid rgba(181, 149, 92, 0.3); border-radius: 8px; font-family: 'Playfair Display', serif; color: var(--verde-oscuro); }
+
+.limite-boletos {
+    min-height: 18px;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--verde-oscuro);
+    opacity: 0.78;
+}
+
+#asistencia {
+    width: min(92vw, 760px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: visible;
+    padding-left: clamp(24px, 6vw, 72px);
+    padding-right: clamp(24px, 6vw, 72px);
+    transition: width 0.35s ease, padding 0.35s ease;
+}
+
+#asistencia:has(#boleto-generado:not(.d-none)) {
+    width: min(96vw, 1080px);
+    padding-left: clamp(18px, 4vw, 48px);
+    padding-right: clamp(18px, 4vw, 48px);
+}
+
+#form-asistencia {
+    width: min(100%, 430px);
+}
+
+/* ========================================== */
+/* BOLETOS / PREVIEW                           */
+/* ========================================== */
+.boleto-preview {
+    width: min(100%, 980px);
+    margin: 34px auto 0;
+    text-align: center;
+}
+
+.boleto-card {
+    background: rgba(255, 253, 248, 0.72);
+    border: 1px solid rgba(181, 149, 92, 0.32);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.boleto-encabezado {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--verde-oscuro);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.boleto-preview-image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+#preview-plantilla {
+    display: block;
+    width: 100%;
+    max-width: 920px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 6px;
+}
+
+.boleto-botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.boleto-botones .btn {
+    min-width: 220px;
+}
+
+/* ========================================== */
+/* GALERIA                                    */
+/* ========================================== */
+.seccion-galeria {
+    width: min(92vw, 820px);
+    margin-top: 60px;
+    margin-bottom: 70px;
+    margin-left: calc(50% - min(46vw, 410px));
+    margin-right: calc(50% - min(46vw, 410px));
+    position: relative;
+    padding: clamp(30px, 5vw, 46px) clamp(18px, 5vw, 38px);
+    border-radius: 4px;
+    background: #a29d94;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.08);
+}
+
+.titulo-galeria {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.adorno-galeria {
+    margin: 8px 0 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.35rem;
+}
+
+.texto-galeria {
+    margin: 0 auto 34px;
+    max-width: 620px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.galeria-carrusel {
+    position: relative;
+    min-height: clamp(260px, 38vw, 350px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 640px);
+    margin: 0 auto;
+}
+
+.galeria-marco {
+    position: relative;
+    width: min(100%, 560px);
+    aspect-ratio: 17 / 10;
+    height: clamp(250px, 36vw, 330px);
+    margin: 0 auto;
+}
+
+.galeria-foto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    object-fit: cover;
+    border: 7px solid #ffffff;
+    box-shadow: 0 18px 28px rgba(0, 0, 0, 0.16);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.galeria-foto-centro {
+    width: min(62vw, 270px);
+    aspect-ratio: 9 / 11;
+    height: min(75.8vw, 330px);
+    max-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.galeria-foto-izq,
+.galeria-foto-der {
+    width: min(34vw, 170px);
+    aspect-ratio: 2 / 3;
+    height: min(51vw, 255px);
+    opacity: 0.72;
+    z-index: 1;
+}
+
+.galeria-foto-izq {
+    transform: translate(-128%, -48%) rotate(-8deg);
+}
+
+.galeria-foto-der {
+    transform: translate(28%, -48%) rotate(8deg);
+}
+
+.galeria-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 70px;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 2.2rem;
+    z-index: 3;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.galeria-control:hover {
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.galeria-prev {
+    left: clamp(8px, 5vw, 44px);
+}
+
+.galeria-next {
+    right: clamp(8px, 5vw, 44px);
+}
+
+.galeria-puntos {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 8px;
+}
+
+.galeria-puntos button {
+    width: 7px;
+    height: 7px;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.42);
+}
+
+.galeria-puntos button.activo {
+    background: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .hero-seccion {
+        min-height: 100svh;
+        background-position: center top;
+        padding: 0 18px;
+    }
+
+    .fecha-hero {
+        letter-spacing: 2px;
+    }
+
+    .menu-flotante a,
+    .menu-flotante button {
+        padding: 13px 10px;
+    }
+
+    .seccion-pantalla-completa {
+        padding-top: 58px !important;
+        padding-bottom: 58px !important;
+    }
+
+    .frase-poetica {
+        font-size: 2.25rem;
+        line-height: 1.15;
+    }
+
+    .texto-invitacion-elegante {
+        padding: 0;
+        font-size: 1rem;
+    }
+
+    #itinerario-libre .linea-tiempo-libre {
+        max-width: 360px;
+    }
+
+    #itinerario-libre .izq .contenido-texto {
+        padding-right: 30px;
+    }
+
+    #itinerario-libre .der .contenido-texto {
+        padding-left: 30px;
+    }
+
+    #asistencia,
+    #asistencia:has(#boleto-generado:not(.d-none)) {
+        width: calc(100vw - 24px);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .boleto-card {
+        padding: 10px;
+    }
+
+    #preview-plantilla {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .seccion-galeria {
+        width: calc(100vw - 24px);
+        margin-left: calc(50% - 50vw + 12px);
+        margin-right: calc(50% - 50vw + 12px);
+    }
+
+    .marco-foto-container {
+        width: min(240px, 68vw);
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-toggle {
+        width: 26px;
+        height: 50px;
+    }
+
+    .menu-visible .menu-toggle {
+        transform: translate(-78px, -50%) rotate(180deg);
+    }
+
+    .menu-flotante a,
+    .menu-flotante button {
+        font-size: 0.6rem;
+    }
+
+    .galeria-marco {
+        width: 100%;
+        height: auto;
+        min-height: 280px;
+    }
+
+    .galeria-foto-centro {
+        width: 205px;
+        height: 251px;
+    }
+
+    .galeria-foto-izq,
+    .galeria-foto-der {
+        width: 118px;
+        height: 177px;
+    }
+
+    .galeria-foto-izq {
+        transform: translate(-122%, -48%) rotate(-8deg);
+    }
+
+    .galeria-foto-der {
+        transform: translate(22%, -48%) rotate(8deg);
+    }
+
+    .preview-nombre {
+        font-size: 1.6rem;
+    }
+
+    .preview-numero {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-seccion,
+    .seccion-imagen-amplia {
+        min-height: 560px;
+    }
+
+    .nombres-hero {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .nombres-hero {
+        font-size: 3.75rem;
+    }
+
+    .fecha-hero {
+        letter-spacing: 1px;
+    }
+
+    .bloque-tiempo-vintage {
+        padding: 0 5px;
+    }
+
+    .numero-tiempo-vintage {
+        font-size: 2.25rem;
+    }
+
+    .etiqueta-tiempo-vintage {
+        font-size: 1rem;
+    }
+
+    .divisor-vintage {
+        font-size: 1.75rem;
+    }
+}
+
+/* ========================================== */
+/* ESTILOS DE FOTO EN CAPAS Y POESÍA          */
+/* ========================================== */
+.marco-foto-container {
+    position: relative;
+    width: 240px;
+    aspect-ratio: 3 / 4;
+}
+
+.rectangulo-fondo {
+    position: absolute; top: -10px; left: -15px; 
+    width: 100%; height: 100%;
+    background-color: #9ba495; /* Tono verde salvia tenue */
+    z-index: 1;
+}
+
+.rectangulo-frente {
+    position: absolute; top: 15px; left: 15px; 
+    width: 100%; height: 100%;
+    border: 1px solid #5a4b43; /* Borde oscuro delgado */
+    z-index: 3;
+}
+
+.foto-cuadro {
+    position: absolute; top: 0; left: 0; 
+    width: 100%; height: 100%;
+    object-fit: cover; z-index: 2; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.frase-poetica {
+    font-family: 'Great Vibes', cursive; 
+    font-size: 2.8rem; 
+    color: #333;
+}
+
+.adorno-floral {
+    letter-spacing: 5px; 
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+.btn-calendario {
+    background-color: #9ba495; 
+    color: white; 
+    border-radius: 4px; 
+    padding: 10px 20px; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 0.85rem; 
+    transition: 0.3s;
+}
+
+.btn-calendario:hover {
+    background-color: #7a8374;
+    color: white;
+}
+
+/* Nuevos bloques circulares para el reloj */
+.bloque-tiempo-aro {
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.numero-tiempo-aro {
+    font-family: 'Playfair Display', serif; 
+    font-size: 1.8rem; 
+    color: #4a4a4a; 
+    width: 65px; height: 65px; 
+    border: 1px solid #ccc; 
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 5px;
+}
+
+/* ========================================== */
+/* RELOJ ESTILO VINTAGE / IMPRENTA            */
+/* ========================================== */
+.bloque-tiempo-vintage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.numero-tiempo-vintage {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400; /* Números delgados, estilo editorial */
+    color: var(--texto);
+    line-height: 1;
+}
+
+.etiqueta-tiempo-vintage {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2rem;
+    color: var(--dorado); /* Nombre de la unidad en color dorado hilado */
+    margin-top: 5px;
+    text-transform: lowercase; /* Minúsculas elegantes */
+}
+
+.divisor-vintage {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: rgba(181, 149, 92, 0.4); /* Línea dorada tenue para separar */
+    align-self: center;
+    line-height: 1;
+}
+
+/* ========================================== */
+/* DIVISOR CON IMAGEN FLORAL                  */
+/* ========================================== */
+.divisor-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.divisor-imagen img {
+    width: 250px; /* Ajusta este número si lo quieres más grande o pequeño */
+    opacity: 0.8; /* Lo hace ligeramente transparente para que se vea más elegante y sutil */
+}
+
+/* ========================================== */
+/* TEXTO PRINCIPAL DE INVITACIÓN              */
+/* ========================================== */
+.texto-invitacion-elegante {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #5a6b7c; /* Un tono gris-azulado muy sofisticado */
+    line-height: 1.8; /* Da espacio para que respiren las líneas */
+    font-weight: 300; /* Hace que la letra se vea delgada y fina */
+    letter-spacing: 0.5px;
+    padding: 0 20px;
+}
+
+/* ========================================== */
+/* TEXTO DESTACADO (MÁS GRUESO Y OSCURO)      */
+/* ========================================== */
+/* ========================================== */
+/* TEXTO DESTACADO (MÁS GRUESO Y OSCURO)      */
+/* ========================================== */
+/* ========================================== */
+/* TEXTO DESTACADO CORREGIDO                  */
+/* ========================================== */
+/* ========================================== */
+/* TEXTO DESTACADO CON NUEVA FUENTE           */
+/* ========================================== */
+.texto-juntos {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-weight: 500; /* El peso 500 en Poppins es la negrilla sutil perfecta */
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* ========================================== */
+/* TARJETAS DE INDICACIONES (PARA EL EVENTO)  */
+/* ========================================== */
+.tarjeta-indicacion {
+    background-color: rgba(249, 249, 247, 0.95); /* Color crema elegante */
+    border-radius: 12px;
+    padding: 0 20px 30px 20px;
+    height: auto; /* Permite que la tarjeta se ajuste a su contenido */
+    min-height: 250px; /* Una altura base más pequeña */
+    margin-top: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.icono-flotante {
+    width: 80px; 
+    height: 80px;
+    background-color: #9ba495;
+    border: 4px solid rgba(255, 255, 255, 0.5); /* Borde semitransparente como en tu imagen */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: -40px; /* Empuja el círculo hacia arriba */
+    color: #ffffff;
+    font-size: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.titulo-tarjeta {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #333333;
+}
+
+.texto-destacado-tarjeta {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.texto-tarjeta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-top: auto; /* Esto empuja el texto suavemente hacia el centro/abajo */
+}
+
+/* ========================================== */
+/* SECCIÓN ESTIRADA A PANTALLA COMPLETA       */
+/* ========================================== */
+/* ========================================== */
+/* SECCIÓN ESTIRADA A PANTALLA COMPLETA       */
+/* ========================================== */
+.seccion-pantalla-completa {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    border-radius: 0 !important;
+    border-top: none;
+    padding-top: 80px !important; 
+    padding-bottom: 80px !important;
+}
+
+
+/* ========================================== */
+/* ITINERARIO FLOTANTE Y ZIGZAG               */
+/* ========================================== */
+
+/* Decoración de ramas sin romper el diseño */
+#itinerario-libre.seccion-decorada {
+    background-image: url('img/rama-izq.png'), url('img/rama-der.png');
+    background-position: left center, right center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 18% auto, 18% auto;
+    overflow: hidden; /* Evita que las imágenes generen scroll horizontal */
+}
+
+/* Contenedor principal de la línea */
+#itinerario-libre .linea-tiempo-libre {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* La línea dorada central */
+#itinerario-libre .linea-tiempo-libre::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #B5955C;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centrado perfecto y seguro */
+    z-index: 1;
+}
+
+/* Contenedor de cada evento */
+#itinerario-libre .evento-flotante {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+}
+
+/* Dividimos el espacio en dos mitades (50%) para que la línea quede en medio */
+#itinerario-libre .contenido-texto, 
+#itinerario-libre .espacio-vacio {
+    width: 50%;
+}
+
+/* Ajustes de espaciado para que no toquen la línea */
+#itinerario-libre .izq .contenido-texto {
+    padding-right: 40px;
+}
+#itinerario-libre .der .contenido-texto {
+    padding-left: 40px;
+}
+
+/* Tipografías flotantes */
+#itinerario-libre .hora { 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    color: #333; 
+    margin-bottom: 5px; 
+}
+#itinerario-libre .evento-texto { 
+    font-family: 'Montserrat', sans-serif; 
+    color: #666; 
+    margin-bottom: 0; 
+}
+
+/* El círculo central que "corta" la línea */
+#itinerario-libre .icono-centro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Lo deja clavado exactamente en el centro */
+    width: 44px;
+    height: 44px;
+    background-color: #fcfcf9; /* Tu color de fondo base para ocultar la línea detrás */
+    border: 2px solid #B5955C;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B5955C;
+    font-size: 1.2rem;
+    z-index: 2; /* Por encima de la línea */
+}
+
+/* ========================================== */
+/* IMAGEN AMPLIA DE LUGAR                    */
+/* ========================================== */
+.seccion-imagen-amplia {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin-left: calc(50% - 50vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 34px 46px rgba(0, 0, 0, 0.28), inset 0 -34px 46px rgba(0, 0, 0, 0.3);
+}
+
+.imagen-amplia-fondo {
+    position: absolute;
+    inset: 0;
+    background-image: url('img/optimized/lugar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    transform: scale(1.02);
+}
+
+.imagen-amplia-fondo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at center, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.42) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.28));
+}
+
+.imagen-amplia-contenido {
+    position: relative;
+    z-index: 1;
+    width: min(92vw, 760px);
+    max-width: 760px;
+    padding: 40px 32px;
+    text-align: center;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.34);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.etiqueta-lugar {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+}
+
+.seccion-imagen-amplia .titulo-lugar {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    margin: 0 0 12px;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+}
+
+.seccion-imagen-amplia .detalle-lugar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 10px;
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.32);
+}
+
+.detalle-lugar-principal {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.seccion-imagen-amplia .btn-lugar {
+    display: inline-block;
+    background: rgba(255,255,255,0.92);
+    color: var(--verde-oscuro);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    margin-top: 12px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+    transition: all 0.3s ease;
+}
+
+.seccion-imagen-amplia .btn-lugar:hover {
+    background: #ffffff;
+    color: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .seccion-imagen-amplia {
+        min-height: 82svh;
+    }
+
+    .imagen-amplia-fondo {
+        background-attachment: scroll;
+        background-position: center;
+    }
+
+    .imagen-amplia-contenido {
+        padding: 32px 20px;
+        margin: 0 16px;
+    }
+
+    .seccion-imagen-amplia .titulo-lugar {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .seccion-imagen-amplia {
+        min-height: 76svh;
+    }
+
+    .imagen-amplia-contenido {
+        width: min(90vw, 360px);
+        padding: 26px 16px;
+    }
+
+    .seccion-imagen-amplia .detalle-lugar {
+        font-size: 0.92rem;
+        line-height: 1.65;
+    }
+}
+
+/* ========================================== */
+/* FRANJA FINAL DECORATIVA                    */
+/* ========================================== */
+.franja-final {
+    width: 100%;
+    min-height: 34px;
+    padding: 14px 18px 18px;
+    background: var(--crema);
+    border-top: 1px solid rgba(181, 149, 92, 0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.franja-final-linea {
+    width: min(420px, 74vw);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+}
+
+@media (max-width: 576px) {
+    .franja-final {
+        min-height: 28px;
+        padding-top: 10px;
+        padding-bottom: 14px;
+    }
+}
+
+/* ========================================== */
+/* TARJETA DE LUGAR (FOTO Y TEXTO)            */
+/* ========================================== */
+
+/* Contenedor principal verde salvia */
+.tarjeta-lugar {
+    display: flex;
+    align-items: center;
+    background-color: #8D9B8C; /* Ajusta este verde a tu paleta */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    gap: 40px; /* Separación entre la foto y el texto */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+}
+
+/* Contenedor de la foto */
+.imagen-lugar {
+    flex: 1; /* Ocupa la mitad del espacio */
+}
+
+/* Estilo de la foto con bordes bien redondeados */
+.imagen-lugar img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px; /* Para que la foto no se haga gigante */
+    object-fit: cover; /* Recorta bonito si la foto es de otra proporción */
+    border-radius: 20px; 
+}
+
+/* Contenedor del texto */
+.info-lugar {
+    flex: 1; /* Ocupa la otra mitad */
+    text-align: left;
+    color: #ffffff; /* Texto blanco para contrastar con el fondo oscuro */
+}
+
+/* Títulos y Párrafos */
+.titulo-lugar {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.detalle-lugar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* El botón estilo tierra/beige */
+.btn-lugar {
+    display: inline-block;
+    background-color: #A69B8D; /* Color arena/beige del botón */
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 5px; /* Bordes un poco cuadrados como en la foto */
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Sombra para que resalte como botón */
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.btn-lugar:hover {
+    background-color: #8E8376;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ========================================== */
+/* RESPONSIVIDAD (PANTALLAS CHICAS Y CELULARES)*/
+/* ========================================== */
+@media (max-width: 768px) {
+    .tarjeta-lugar {
+        flex-direction: column; /* Apila foto arriba, texto abajo */
+        padding: 25px;
+        gap: 25px;
+    }
+    
+    .info-lugar {
+        text-align: center; /* En celular se ve mejor el texto centrado */
+    }
+}

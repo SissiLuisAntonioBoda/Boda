@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boda Sissi & Luis Antonio</title>
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="pantalla-sobre" onclick="abrirPantalla()">
+      <div class="mitad-superior"></div>
+      <div class="sello-central">
+        <span>S y L</span>
+      </div>
+      <div class="texto-abrir">Toca el sello para abrir</div>
+      <div class="mitad-inferior"></div>
+    </div>
+
+    <button type="button" class="menu-toggle" aria-label="Mostrar menú" aria-expanded="false">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <nav class="menu-flotante" aria-label="Navegación rápida">
+      <a href="#inicio"><i class="bi bi-chevron-up"></i><br />Subir</a>
+      <button type="button" id="btn-musica" class="musica-pausada" aria-pressed="false">
+        <i class="bi bi-music-note-beamed"></i><br />Música
+      </button>
+      <a href="#asistencia"
+        ><i class="bi bi-check2-square"></i><br />Confirmar</a
+      >
+    </nav>
+
+    <audio id="cancion-boda" preload="none" loop>
+      <source src="Music/cancion.mp4" type="audio/mp4" />
+    </audio>
+
+    <header id="inicio" class="hero-seccion">
+      <div class="hero-contenido reveal">
+        <h1 class="nombres-hero">
+          Sissi Fabiola<br /><span class="ampersand-hero">&</span><br />Luis
+          Antonio
+        </h1>
+        <p class="fecha-hero">17 / Octubre / 2026</p>
+      </div>
+    </header>
+
+    <div class="container contenedor-principal">
+      <section
+        class="seccion text-center reveal mt-0 seccion-pantalla-completa"
+        style="
+          background-color: transparent;
+          box-shadow: none;
+          border: none;
+          padding-top: 40px;
+          padding-bottom: 40px;
+        "
+      >
+        <div class="container" style="max-width: 800px; margin: 0 auto">
+          <div class="marco-foto-container mx-auto">
+            <div class="rectangulo-fondo"></div>
+            <div class="rectangulo-frente"></div>
+            <img src="img/optimized/foto-10.jpg" alt="Amor" class="foto-cuadro" loading="lazy" decoding="async" />
+          </div>
+
+          <h2 class="frase-poetica mt-4">
+            "El día en que dos historias se unen para siempre"
+          </h2>
+
+          <div class="divisor-imagen mt-2 mb-2">
+            <img src="img/divisor.png" alt="Adorno Floral" />
+          </div>
+
+          <p class="texto-juntos mt-2 mb-3 mx-auto text-center">
+            Juntos en el amor y la vida, celebramos este<br />
+            momento especial con<br />
+            quienes más queremos.
+          </p>
+
+          <div
+            id="reloj"
+            class="d-flex justify-content-center gap-3 mt-2 mb-4"
+          ></div>
+
+          <a
+            id="btn-calendario"
+            href="#"
+            class="btn btn-calendario mt-4"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="bi bi-calendar-event"></i> Agregar a mi calendario</a
+          >
+
+          <div class="linea-dorada-corta mt-3 mb-3"></div>
+
+          <p class="texto-intro-padres text-center">
+            Acompañados por el cariño de quienes han guiado nuestros pasos.
+          </p>
+
+          <div class="row mt-2 mb-2 padres-nombres justify-content-center">
+            <div class="col-12 col-md-5">
+              <p>Delfina García Valdez<br />Jesús Salgado Escobar</p>
+            </div>
+            <div class="col-12 col-md-5">
+              <p>Eustolia Guerrero Espinosa<br />Antonio Erasto Sánchez</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN: PARA EL EVENTO (TARJETAS) -->
+      <section
+        class="seccion text-center mt-5 mb-5 p-4 seccion-pantalla-completa"
+        style="
+          background-image:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url(&quot;img/optimized/foto-38.jpg&quot;);
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+        "
+      >
+        <!-- Títulos sobre la imagen -->
+        <h2
+          class="frase-poetica text-white mb-2"
+          style="position: relative; z-index: 2"
+        >
+          Para el evento
+        </h2>
+        <p class="text-white small mb-5" style="position: relative; z-index: 2">
+          Agradecemos tu atención a las siguientes indicaciones:
+        </p>
+
+        <div
+          class="row g-4 justify-content-center"
+          style="position: relative; z-index: 2"
+        >
+          <!-- TARJETA 1: VESTIMENTA -->
+          <div class="col-md-4">
+            <div class="tarjeta-indicacion">
+              <div class="icono-flotante">
+                <i class="bi bi-suit-heart"></i>
+              </div>
+              <h4 class="titulo-tarjeta mt-4">Código de vestimenta</h4>
+              <p class="texto-destacado-tarjeta mt-3">Formal</p>
+              <p class="texto-tarjeta">
+                ¡Queremos verlos muy guapos y guapas! Solo les pedimos evitar el
+                color blanco (¡por favor, ese le toca a la novia o habrá
+                problemas!).
+              </p>
+            </div>
+          </div>
+
+          <!-- TARJETA 2: ASISTENCIA -->
+          <div class="col-md-4">
+            <div class="tarjeta-indicacion">
+              <div class="icono-flotante">
+                <i class="bi bi-envelope-paper"></i>
+              </div>
+              <h4 class="titulo-tarjeta mt-4">Asistencia</h4>
+              <p class="texto-tarjeta mt-4">
+                Ayúdanos confirmando tu asistencia antes del<br /><strong
+                  >17 de septiembre de 2026</strong
+                >.
+              </p>
+            </div>
+          </div>
+
+          <!-- TARJETA 3: PUNTUALIDAD -->
+          <div class="col-md-4">
+            <div class="tarjeta-indicacion">
+              <div class="icono-flotante">
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <h4 class="titulo-tarjeta mt-4">En el evento</h4>
+              <p class="texto-tarjeta mt-4">
+                Te sugerimos llegar 15 minutos antes de la ceremonia para que no
+                te pierdas ningún detalle importante.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="itinerario-libre"
+        class="text-center seccion-decorada"
+        style="
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 60px 0;
+        "
+      >
+        <div
+          class="container-fluid"
+          style="max-width: 900px; position: relative"
+        >
+          <h2 class="frase-poetica mb-5">Itinerario</h2>
+
+          <div class="linea-tiempo-libre">
+            <div class="evento-flotante izq">
+              <div class="contenido-texto text-right">
+                <p class="hora">15:30 hrs</p>
+                <p class="evento-texto">Recepción de invitados</p>
+              </div>
+              <div class="icono-centro">
+                <i class="bi bi-car-front-fill"></i>
+              </div>
+              <div class="espacio-vacio"></div>
+            </div>
+
+            <div class="evento-flotante der">
+              <div class="espacio-vacio"></div>
+              <div class="icono-centro"><i class="bi bi-pen-fill"></i></div>
+              <div class="contenido-texto text-left">
+                <p class="hora">16:00 hrs</p>
+                <p class="evento-texto">Ceremonia Civil</p>
+              </div>
+            </div>
+
+            <div class="evento-flotante izq">
+              <div class="contenido-texto text-right">
+                <p class="hora">17:00 hrs</p>
+                <p class="evento-texto">Comida</p>
+              </div>
+              <div class="icono-centro"><i class="bi bi-cup-hot-fill"></i></div>
+              <div class="espacio-vacio"></div>
+            </div>
+
+            <div class="evento-flotante der">
+              <div class="espacio-vacio"></div>
+              <div class="icono-centro"><i class="bi bi-stars"></i></div>
+              <div class="contenido-texto text-left">
+                <p class="hora">18:30 hrs</p>
+                <p class="evento-texto">Fiesta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lugar-ceremonia" class="seccion-imagen-amplia">
+        <div class="imagen-amplia-fondo"></div>
+        <div class="imagen-amplia-contenido">
+          <span class="etiqueta-lugar">Ceremonia</span>
+          <h2 class="titulo-lugar">Salón El Bohío</h2>
+          <p class="detalle-lugar detalle-lugar-principal">
+            C. Francisco Villa 155, Delegación Santa Cruz Atzcapotzaltongo,
+            50030 Toluca de Lerdo, Méx.
+          </p>
+          <a
+            href="https://www.google.com/maps/place/Salon+El+Bohio/@19.3182915,-99.6399641,15z/data=!4m6!3m5!1s0x85d27603fce82c6d:0x9cb75b4cfd9071f!8m2!3d19.3182915!4d-99.639965!16s%2Fg%2F11bwfl7y97?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            class="btn-lugar"
+            >Ver ubicación</a
+          >
+        </div>
+      </section>
+
+      <section class="seccion seccion-sin-caja text-center reveal">
+        <div class="bloque-regalos">
+          <div class="icono-regalos-nuevo" aria-hidden="true">
+            <i class="bi bi-gift"></i>
+          </div>
+          <h3 class="titulo-seccion titulo-regalos">Mesa de Regalos</h3>
+          <p class="texto-regalos">
+            Su presencia y cariño son el regalo más hermoso que podríamos pedir.
+            Sin embargo, si desean tener un detalle con nosotros, cualquier
+            aportación para comenzar a equipar nuestro nuevo hogar será recibida
+            con todo el corazón.
+          </p>
+        </div>
+      </section>
+
+      <section id="asistencia" class="seccion text-center reveal mb-5">
+        <h3 class="titulo-seccion">Confirmar Asistencia</h3>
+        <div class="divisor-linea mb-4"></div>
+        <form id="form-asistencia" class="mx-auto">
+          <div class="mb-3 text-start">
+            <label for="nombre-asistente" class="form-label txt-secundario small"
+              >Nombre y Apellido</label
+            >
+            <input
+              id="nombre-asistente"
+              name="nombre"
+              type="text"
+              class="form-control input-boda"
+              placeholder="Ej. Juan Pérez"
+              required
+            />
+          </div>
+          <div class="mb-3 text-start">
+            <label for="respuesta-asistencia" class="form-label txt-secundario small"
+              >¿Podrás acompañarnos?</label
+            >
+            <select id="respuesta-asistencia" name="respuesta" class="form-select input-boda" required>
+              <option value="">Selecciona una opción</option>
+              <option value="si">Sí, confirmo mi asistencia</option>
+              <option value="no">Lo siento, no podré asistir</option>
+            </select>
+          </div>
+          <div id="grupo-boletos" class="mb-4 text-start">
+            <label for="boletos-asistencia" class="form-label txt-secundario small"
+              >Número de boletos</label
+            >
+            <select
+              id="boletos-asistencia"
+              name="boletos"
+              class="form-control input-boda"
+              required
+            >
+              <option value="">Selecciona una opción</option>
+            </select>
+            <div id="limite-boletos" class="limite-boletos"></div>
+          </div>
+          <button type="submit" class="btn btn-boda w-100">
+            ENVIAR CONFIRMACIÓN
+          </button>
+          <div id="mensaje-confirmacion" class="mensaje-confirmacion" role="status" aria-live="polite"></div>
+
+        </form>
+        <div id="boleto-generado" class="boleto-preview d-none">
+          <div class="boleto-card">
+            <div class="boleto-encabezado">Boleto de asistencia</div>
+            <div class="boleto-preview-image-wrapper">
+              <img id="preview-plantilla" src="img/Boleto.png" alt="Plantilla de boleto" loading="lazy" decoding="async" />
+            </div>
+            <div class="boleto-botones">
+              <button type="button" id="btn-descargar-boleto" class="btn btn-boda mt-3">
+                DESCARGAR BOLETO
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="seccion-galeria reveal">
+        <h3 class="titulo-galeria">Nuestra galería</h3>
+        <div class="adorno-galeria">— ❧ —</div>
+        <p class="texto-galeria">"Las memorias más lindas se guardan en el corazón... y en las fotos."</p>
+
+        <div class="galeria-carrusel" aria-label="Galería de fotos">
+          <button type="button" class="galeria-control galeria-prev" aria-label="Foto anterior">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <div class="galeria-marco">
+            <img class="galeria-foto galeria-foto-izq" alt="" aria-hidden="true" />
+            <img class="galeria-foto galeria-foto-centro" alt="Foto de Sissi y Luis" />
+            <img class="galeria-foto galeria-foto-der" alt="" aria-hidden="true" />
+          </div>
+          <button type="button" class="galeria-control galeria-next" aria-label="Foto siguiente">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="galeria-puntos" aria-label="Seleccionar foto"></div>
+      </section>
+    </div>
+
+    <footer class="franja-final" aria-hidden="true">
+      <div class="franja-final-linea"></div>
+    </footer>
+
+    <script>
+      window.GOOGLE_SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxIknlj2-sgIx-z3w00NjXsn1mx2IjsZX-w6aVtye5qauiEjG52bmDQjCiCObZzdiSQ/exec';
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
