@@ -1294,3 +1294,48 @@ canvas {
         text-align: center; /* En celular se ve mejor el texto centrado */
     }
 }
+
+/* Ajuste final del contador para evitar desbordes en celular */
+#reloj {
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between !important;
+    gap: clamp(6px, 2vw, 16px) !important;
+    overflow: hidden;
+}
+
+#reloj .bloque-tiempo-vintage {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0;
+}
+
+#reloj .numero-tiempo-vintage {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+}
+
+#reloj .etiqueta-tiempo-vintage {
+    font-size: clamp(0.95rem, 3.8vw, 1.2rem);
+    white-space: nowrap;
+}
+
+#reloj .divisor-vintage {
+    flex: 0 0 auto;
+    font-size: clamp(1.55rem, 6vw, 2.2rem);
+}
+
+@media (max-width: 380px) {
+    #reloj {
+        gap: 4px !important;
+    }
+
+    #reloj .numero-tiempo-vintage {
+        font-size: 1.85rem;
+    }
+
+    #reloj .etiqueta-tiempo-vintage {
+        font-size: 0.88rem;
+    }
+}
